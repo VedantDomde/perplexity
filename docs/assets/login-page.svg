@@ -1,0 +1,44 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#050816"/>
+  <rect x="90" y="90" width="1420" height="820" rx="36" fill="#0B1122" stroke="#FFFFFF" stroke-opacity="0.1"/>
+  <rect x="90" y="90" width="700" height="820" rx="36" fill="url(#paint0_linear_1_2)"/>
+  <circle cx="410" cy="250" r="230" fill="#123B57" fill-opacity="0.35"/>
+  <circle cx="520" cy="720" r="180" fill="#123B57" fill-opacity="0.3"/>
+  <circle cx="220" cy="195" r="36" fill="#8AF3FF" fill-opacity="0.7"/>
+  <text x="195" y="235" fill="white" font-size="30" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Perplexity</text>
+  <text x="195" y="380" fill="white" font-size="74" font-family="Segoe UI, Arial, sans-serif" font-weight="800">Smart answers</text>
+  <text x="195" y="460" fill="white" font-size="74" font-family="Segoe UI, Arial, sans-serif" font-weight="800">for your next idea.</text>
+  <text x="195" y="540" fill="#D8E8FF" font-size="28" font-family="Segoe UI, Arial, sans-serif">A focused AI workspace for research, planning,</text>
+  <text x="195" y="580" fill="#D8E8FF" font-size="28" font-family="Segoe UI, Arial, sans-serif">and clearer decision-making.</text>
+  <rect x="195" y="660" width="270" height="82" rx="24" fill="#D9F8FF" fill-opacity="0.14" stroke="#D9F8FF" stroke-opacity="0.2"/>
+  <text x="225" y="712" fill="#F6FAFF" font-size="24" font-family="Segoe UI, Arial, sans-serif">“The fastest way to move</text>
+  <text x="225" y="744" fill="#F6FAFF" font-size="24" font-family="Segoe UI, Arial, sans-serif">from question to clarity.”</text>
+
+  <rect x="915" y="185" width="460" height="640" rx="30" fill="#0D1425" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <text x="970" y="250" fill="#8FF2FF" font-size="18" font-family="Segoe UI, Arial, sans-serif" letter-spacing="3">WELCOME BACK</text>
+  <text x="970" y="310" fill="white" font-size="52" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Sign in</text>
+  <text x="970" y="350" fill="#C6D5EF" font-size="22" font-family="Segoe UI, Arial, sans-serif">Access your workspace</text>
+
+  <rect x="970" y="390" width="350" height="68" rx="15" fill="#0A1226" stroke="#99A8C7" stroke-opacity="0.4"/>
+  <text x="990" y="431" fill="#D7E4F7" font-size="18" font-family="Segoe UI, Arial, sans-serif">Email</text>
+
+  <rect x="970" y="480" width="350" height="68" rx="15" fill="#0A1226" stroke="#99A8C7" stroke-opacity="0.4"/>
+  <text x="990" y="521" fill="#D7E4F7" font-size="18" font-family="Segoe UI, Arial, sans-serif">Password</text>
+
+  <rect x="970" y="585" width="350" height="64" rx="16" fill="url(#paint1_linear_1_2)"/>
+  <text x="1120" y="626" fill="#061520" font-size="22" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Login</text>
+
+  <text x="1040" y="710" fill="#D7E4F7" font-size="18" font-family="Segoe UI, Arial, sans-serif">Don’t have an account?</text>
+  <text x="1215" y="710" fill="#67E8F9" font-size="18" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Register</text>
+
+  <defs>
+    <linearGradient id="paint0_linear_1_2" x1="90" y1="90" x2="790" y2="910" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1A2B"/>
+      <stop offset="1" stop-color="#0A1424"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear_1_2" x1="970" y1="585" x2="1320" y2="649" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67E8F9"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+</svg>

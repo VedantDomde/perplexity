@@ -1,38 +1,68 @@
 # Perplexity
 
-Perplexity is a full-stack AI chat application with a React frontend and an Express/Node.js backend. It supports user authentication, protected chat sessions, real-time messaging, and AI-generated responses with optional web search capabilities.
+Perplexity is a modern AI-powered search and chat experience built for fast research, idea exploration, and decision support. The app combines a premium landing experience with secure authentication and an interactive dashboard inspired by AI research assistants.
 
-## Features
+Live demo: https://perplexity-yvl7.onrender.com
 
-- User registration and login with JWT-based authentication
-- Protected dashboard for chat conversations
-- Real-time messaging with Socket.IO
-- AI response generation using LangChain integrations
-- Optional internet search support for richer answers
-- MongoDB-backed storage for users, chats, and messages
-- Email-based notifications for account-related actions
+## Overview
+
+Perplexity helps users:
+- ask high-quality questions and get concise, useful answers
+- explore topics faster with AI-assisted guidance
+- organize research in a clean conversation workspace
+- continue from a strong onboarding flow with login and registration
+
+## Highlights
+
+- Beautiful landing page with product-focused storytelling
+- User register and login flows with friendly UI states
+- Protected dashboard access for authenticated users
+- AI chat interface designed for production-like user experience
+- Responsive layout for desktop and smaller screens
+- MongoDB-backed authentication and app data structure
 
 ## Tech Stack
 
-- Frontend: React, Vite, Redux Toolkit, Tailwind CSS, Socket.IO client
-- Backend: Node.js, Express, MongoDB with Mongoose, Socket.IO, JWT, Nodemailer
-- AI services: Google Gemini, Mistral, and Tavily integrations
+- Frontend: React, Vite, Redux Toolkit, Tailwind CSS
+- Backend: Node.js, Express, MongoDB, Mongoose, JWT
+- Real-time features: Socket.IO
+- Email features: Nodemailer
+- AI services: Gemini / Mistral / Tavily integrations (depending on setup)
 
 ## Project Structure
 
-- Backend/: server, API routes, controllers, models, services, and socket setup
-- Frontend/: React app, Redux slices, pages, hooks, and API/socket clients
+- Backend/ - Express server, controllers, routes, models, middleware, socket setup
+- Frontend/ - React app, Redux slices, pages, hooks, services
+- docs/assets/ - preview images for the app pages
+
+## Screenshots
+
+### Home page
+
+![Home page](docs/assets/home-page.svg)
+
+### Login page
+
+![Login page](docs/assets/login-page.svg)
+
+### Register page
+
+![Register page](docs/assets/register-page.svg)
+
+### Dashboard
+
+![Dashboard](docs/assets/dashboard-page.svg)
 
 ## Prerequisites
 
 - Node.js 18 or newer
 - npm
-- A running MongoDB instance
-- API credentials for the AI and email services you plan to use
+- MongoDB running locally or in a cloud instance
+- API credentials for AI and email services if you want full functionality enabled
 
 ## Environment Variables
 
-Create a .env file inside the Backend folder with values similar to the following:
+Create a .env file in the Backend folder with values similar to:
 
 ```env
 PORT=8000
@@ -50,26 +80,36 @@ GOOGLE_REFRESH_TOKEN=your_google_refresh_token
 ## Getting Started
 
 1. Install backend dependencies:
-   ```bash
-   cd Backend
-   npm install
-   ```
+
+```bash
+cd Backend
+npm install
+```
 
 2. Start the backend server:
-   ```bash
-   npm run dev
-   ```
+
+```bash
+npm run dev
+```
 
 3. In a second terminal, install and start the frontend:
-   ```bash
-   cd Frontend
-   npm install
-   npm run dev
-   ```
 
-4. Open the frontend in your browser at http://localhost:5173 and the backend API at http://localhost:8000.
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+4. Open the app in the browser:
+- Frontend: http://localhost:5173
+- Backend: http://localhost:8000
 
 ## Notes
 
-- The frontend and backend are separated by design, so they should be started independently.
-- Keep secrets out of source control by relying on environment variables and the ignore files added in both folders.
+- The frontend and backend are designed to run separately.
+- Keep all secrets in environment variables and do not commit real credentials.
+- The live deployment is available here: https://perplexity-yvl7.onrender.com
+
+## Contributing
+
+Contributions are welcome. If you want to improve the UI, add new features, or improve backend logic, feel free to open a pull request or fork the project.

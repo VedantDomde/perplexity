@@ -1,94 +1,141 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router'
-import { useAuth } from '../hook/useAuth'
+import React, { useEffect, useState } from 'react'
+import { Link, Navigate, useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router'
-
+import { useAuth } from '../hook/useAuth'
 
 const Login = () => {
-    const [ email, setEmail ] = useState('')
-    const [ password, setPassword ] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [notice, setNotice] = useState({ type: '', message: '' })
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const user = useSelector(state => state.auth.user)
-    const loading = useSelector(state => state.auth.loading)
+    const user = useSelector((state) => state.auth.user)
+    const loading = useSelector((state) => state.auth.loading)
+    const authError = useSelector((state) => state.auth.error)
 
     const { handleLogin } = useAuth()
-
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (authError) {
+            setNotice({ type: 'error', message: authError })
+        }
+    }, [authError])
 
     const submitForm = async (event) => {
         event.preventDefault()
+        setNotice({ type: '', message: '' })
+        setIsSubmitting(true)
 
-        const payload = {
-            email,
-            password,
+        const payload = { email, password }
+        const success = await handleLogin(payload)
+
+        if (success) {
+            setNotice({ type: 'success', message: 'Login successful. Redirecting to your dashboard...' })
+            setTimeout(() => navigate('/dashboard'), 700)
+        } else {
+            setNotice({ type: 'error', message: authError || 'Login failed. Please try again.' })
         }
 
-        await handleLogin(payload)
-        navigate("/")
-
+        setIsSubmitting(false)
     }
 
-    if(!loading && user){
-        return <Navigate to="/" replace />
+    if (!loading && user) {
+        return <Navigate to="/dashboard" replace />
     }
 
     return (
-        <section className="min-h-screen bg-zinc-950 px-4 py-10 text-zinc-100 sm:px-6 lg:px-8">
-            <div className="mx-auto flex min-h-[85vh] w-full max-w-5xl items-center justify-center">
-                <div className="w-full max-w-md rounded-2xl border border-[#31b8c6]/40 bg-zinc-900/70 p-8 shadow-2xl shadow-black/50 backdrop-blur">
-                    <h1 className="text-3xl font-bold text-[#31b8c6]">
-                        Welcome Back
-                    </h1>
-                    <p className="mt-2 text-sm text-zinc-300">
-                        Sign in with your email and password.
-                    </p>
-
-                    <form onSubmit={submitForm} className="mt-8 space-y-5">
+        <section className="min-h-screen bg-[#050816] px-4 py-10 text-slate-100 sm:px-6 lg:px-8">
+            <div className="mx-auto flex min-h-[85vh] w-full max-w-6xl items-center justify-center">
+                <div className="grid w-full max-w-5xl overflow-hidden rounded-[32px] border border-white/10 bg-[#0b1122]/80 shadow-[0_30px_80px_rgba(15,23,42,0.75)] backdrop-blur-xl lg:grid-cols-[1.1fr_0.9fr]">
+                    <div className="hidden bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.2),_transparent_35%),linear-gradient(135deg,_rgba(15,23,42,0.9),_rgba(15,23,42,0.7))] p-10 lg:flex lg:flex-col lg:justify-between">
                         <div>
-                            <label htmlFor="email" className="mb-2 block text-sm font-medium text-zinc-200">
-                                Email
-                            </label>
-                            <input
-                                id="email"
-                                type="email"
-                                value={email}
-                                onChange={(event) => setEmail(event.target.value)}
-                                placeholder="you@example.com"
-                                required
-                                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/80 px-4 py-3 text-zinc-100 outline-none ring-0 transition focus:border-[#31b8c6] focus:shadow-[0_0_0_3px_rgba(49,184,198,0.25)]"
-                            />
+                            <div className="flex items-center gap-3">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-cyan-300 via-sky-500 to-indigo-500 text-sm font-bold text-slate-950">
+                                    P
+                                </div>
+                                <span className="text-xl font-semibold">Perplexity</span>
+                            </div>
+                            <h1 className="mt-10 text-4xl font-black tracking-[-0.07em] text-white">Smart answers for your next idea.</h1>
+                            <p className="mt-5 max-w-md text-base leading-7 text-slate-300">
+                                A focused AI workspace for research, planning, decision-making, and turning curiosity into action.
+                            </p>
+                        </div>
+                        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200">
+                            “The fastest way to move from question to clarity.”
+                        </div>
+                    </div>
+
+                    <div className="w-full max-w-md p-8 sm:p-10">
+                        <div className="mb-6 flex items-center justify-between">
+                            <div>
+                                <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">Welcome back</p>
+                                <h2 className="mt-2 text-3xl font-bold text-white">Sign in</h2>
+                            </div>
+                            <Link to="/" className="text-sm text-slate-300 transition hover:text-white">
+                                Home
+                            </Link>
                         </div>
 
-                        <div>
-                            <label htmlFor="password" className="mb-2 block text-sm font-medium text-zinc-200">
-                                Password
-                            </label>
-                            <input
-                                id="password"
-                                type="password"
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
-                                placeholder="Enter your password"
-                                required
-                                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/80 px-4 py-3 text-zinc-100 outline-none ring-0 transition focus:border-[#31b8c6] focus:shadow-[0_0_0_3px_rgba(49,184,198,0.25)]"
-                            />
-                        </div>
+                        <form onSubmit={submitForm} className="space-y-5">
+                            <div>
+                                <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-200">
+                                    Email
+                                </label>
+                                <input
+                                    id="email"
+                                    type="email"
+                                    value={email}
+                                    onChange={(event) => setEmail(event.target.value)}
+                                    placeholder="you@example.com"
+                                    required
+                                    className="w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.2)]"
+                                />
+                            </div>
 
-                        <button
-                            type="submit"
-                            className="w-full rounded-lg bg-[#31b8c6] px-4 py-3 font-semibold text-zinc-950 transition hover:bg-[#45c7d4] focus:outline-none focus:shadow-[0_0_0_3px_rgba(49,184,198,0.35)]"
-                        >
-                            Login
-                        </button>
-                    </form>
+                            <div>
+                                <label htmlFor="password" className="mb-2 block text-sm font-medium text-slate-200">
+                                    Password
+                                </label>
+                                <input
+                                    id="password"
+                                    type="password"
+                                    value={password}
+                                    onChange={(event) => setPassword(event.target.value)}
+                                    placeholder="Enter your password"
+                                    required
+                                    className="w-full rounded-xl border border-slate-700 bg-slate-950/80 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.2)]"
+                                />
+                            </div>
 
-                    <p className="mt-6 text-center text-sm text-zinc-300">
-                        Don&apos;t have an account?{' '}
-                        <Link to="/register" className="font-semibold text-[#31b8c6] transition hover:text-[#45c7d4]">
-                            Register
-                        </Link>
-                    </p>
+                            {notice.message && (
+                                <div
+                                    className={`rounded-xl border px-3 py-2 text-sm ${
+                                        notice.type === 'success'
+                                            ? 'border-emerald-400/40 bg-emerald-500/10 text-emerald-200'
+                                            : 'border-red-400/30 bg-red-500/10 text-red-200'
+                                    }`}
+                                >
+                                    {notice.message}
+                                </div>
+                            )}
+
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-400 to-sky-500 px-4 py-3 font-semibold text-slate-950 transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-70"
+                            >
+                                {isSubmitting ? 'Signing in…' : 'Login'}
+                            </button>
+                        </form>
+
+                        <p className="mt-6 text-center text-sm text-slate-300">
+                            Don&apos;t have an account?{' '}
+                            <Link to="/register" className="font-semibold text-cyan-300 transition hover:text-cyan-200">
+                                Register
+                            </Link>
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
