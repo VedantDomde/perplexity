@@ -39,12 +39,6 @@ const HomePage = () => {
             </div>
           </div>
 
-          <nav className="hidden items-center gap-8 text-sm text-slate-300 md:flex">
-            <a href="#features" className="transition hover:text-white">Features</a>
-            <a href="#about" className="transition hover:text-white">About</a>
-            <a href="#discover" className="transition hover:text-white">Discover</a>
-          </nav>
-
           <div className="flex items-center gap-3">
             {user ? (
               <Link
