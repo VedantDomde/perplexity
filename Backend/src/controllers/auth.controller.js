@@ -13,6 +13,7 @@ export async function register(req, res) {
 
     const { username, email, password } = req.body;
     console.log(`Registering user with username: ${username}, email: ${email}`)
+    // Check if user already exists
 
     const isUserAlreadyExists = await userModel.findOne({
         $or: [ { email }, { username } ]
