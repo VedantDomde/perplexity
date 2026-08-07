@@ -13,6 +13,10 @@ export function useAuth() {
             dispatch(setLoading(true))
             const data = await register({ email, username, password })
         } catch (error) {
+              console.log("REGISTER ERROR:", error);
+    console.log("STATUS:", error.response?.status);
+    console.log("DATA:", error.response?.data);
+    console.log("ERRORS:", error.response?.data?.errors);
             dispatch(setError(error.response?.data?.message || "Registration failed"))
         } finally {
             dispatch(setLoading(false))
@@ -25,6 +29,10 @@ export function useAuth() {
             const data = await login({ email, password })
             dispatch(setUser(data.user))
         } catch (err) {
+              console.log("LOGIN ERROR:", err);
+    console.log("STATUS:", err.response?.status);
+    console.log("DATA:", err.response?.data);
+    console.log("ERRORS:", err.response?.data?.errors);
             dispatch(setError(err.response?.data?.message || "Login failed"))
         } finally {
             dispatch(setLoading(false))

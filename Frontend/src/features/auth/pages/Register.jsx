@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router'
+import { useAuth } from '../hook/useAuth'
 
 const Register = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const auth = useAuth()
 
   const submitForm = (event) => {
     event.preventDefault()
@@ -14,8 +16,10 @@ const Register = () => {
       email,
       password,
     }
+    console.log("Submitting registration form with payload:", payload)
 
-    console.log('Register payload:', payload)
+    auth.handleRegister(payload)
+
   }
 
   return (

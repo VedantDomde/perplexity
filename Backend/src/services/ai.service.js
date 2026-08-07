@@ -4,8 +4,8 @@ import { HumanMessage, SystemMessage, AIMessage, tool, createAgent } from "langc
 import * as z from "zod";
 import { searchInternet } from "./internet.service.js";
 
-const geminiModel = new ChatGoogleGenerativeAI({
-    model: "gemini-flash-latest",
+const geminiModel = new ChatMistralAI({
+    model: "mistral-medium-latest",
     apiKey: process.env.GEMINI_API_KEY
 });
 
