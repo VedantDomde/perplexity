@@ -43,7 +43,7 @@ const Dashboard = () => {
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-cyan-300 via-sky-500 to-indigo-500 text-sm font-bold text-slate-950">
                 P
               </div>
-              <span className="text-xl font-semibold tracking-tight">Perplexity</span>
+              <span className="text-xl font-semibold tracking-tight">Vedant Domde</span>
             </div>
             <button
               type="button"
