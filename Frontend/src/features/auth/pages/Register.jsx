@@ -23,8 +23,10 @@ const Register = () => {
     const success = await auth.handleRegister(payload)
 
     if (success) {
-      setNotice({ type: 'success', message: 'Account created. Redirecting to login...' })
-      setTimeout(() => navigate('/login'), 800)
+      setNotice({
+        type: 'success',
+        message: 'Registration successful. Please check your email and verify your account before logging in.'
+      })
     } else {
       setNotice({ type: 'error', message: authError || 'Registration failed. Please try again.' })
     }
@@ -138,6 +140,14 @@ const Register = () => {
                 Login
               </Link>
             </p>
+            {notice.type === 'success' && (
+              <p className="mt-3 text-center text-sm text-slate-300">
+                After verification, go to{' '}
+                <Link to="/login" className="font-semibold text-cyan-300 transition hover:text-cyan-200">
+                  Login
+                </Link>
+              </p>
+            )}
           </div>
         </div>
       </div>

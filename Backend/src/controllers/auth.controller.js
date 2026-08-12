@@ -47,7 +47,7 @@ export async function register(req, res) {
     })
 
     res.status(201).json({
-        message: "User registered successfully",
+        message: "Registration successful. Please verify your email before logging in.",
         success: true,
         user: {
             id: user._id,
@@ -172,7 +172,7 @@ export async function verifyEmail(req, res) {
 
         await user.save();
 
-       `res.redirect("https://perplexity-yvl7.onrender.com/login?verified=true")`
+        return res.redirect("https://perplexity-yvl7.onrender.com/login?verified=true")
     } catch (err) {
         return res.status(400).json({
             message: "Invalid or expired token",

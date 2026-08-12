@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router'
+import { Link, Navigate, useNavigate, useLocation } from 'react-router'
 import { useSelector } from 'react-redux'
 import { useAuth } from '../hook/useAuth'
 
@@ -15,12 +15,20 @@ const Login = () => {
 
     const { handleLogin } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
 
     useEffect(() => {
+        const verified = new URLSearchParams(location.search).get('verified')
+
+        if (verified === 'true') {
+            setNotice({ type: 'success', message: 'Email verified successfully. You can now log in.' })
+            return
+        }
+
         if (authError) {
             setNotice({ type: 'error', message: authError })
         }
-    }, [authError])
+    }, [authError, location.search])
 
     const submitForm = async (event) => {
         event.preventDefault()
