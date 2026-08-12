@@ -172,14 +172,7 @@ export async function verifyEmail(req, res) {
 
         await user.save();
 
-        const html =
-            `
-        <h1>Email Verified Successfully!</h1>
-        <p>Your email has been verified. You can now log in to your account.</p>
-        <a href="https://perplexity-yvl7.onrender.com/login">Go to Login</a>
-    `
-
-        return res.send(html);
+       `res.redirect("https://perplexity-yvl7.onrender.com/login?verified=true")`
     } catch (err) {
         return res.status(400).json({
             message: "Invalid or expired token",
